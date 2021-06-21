@@ -15,12 +15,17 @@ public class Game extends Canvas implements Runnable {
     private final Random r = new Random();
 
     public Game() {
-        new Window(WIDTH, HEIGHT, "Let's Build a Game", this);
         //Handler is must to initialize beacuse we call it in render() method
         handler = new Handler();
 
+        //We are using keys so LISTEN for it
+        this.addKeyListener(new KeyInput(handler));
+
+        new Window(WIDTH, HEIGHT, "Let's Build a Game", this);
+
         //Set object to handler. Player is created and given to the stage
-        handler.addObject(new Player(r.nextInt(WIDTH), r.nextInt(HEIGHT), ID.PLAYER));
+        handler.addObject(new Player(WIDTH/2-32, HEIGHT/2-32, ID.PLAYER));
+        handler.addObject(new Player(WIDTH, HEIGHT, ID.ENEMY));
 
     }
 
@@ -31,6 +36,7 @@ public class Game extends Canvas implements Runnable {
         running = true;
     }
 
+    //method for stoping the game. Thread.join is stoping the thread
     public synchronized void stop() {
         try {
             thread.join();

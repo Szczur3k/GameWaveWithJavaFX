@@ -2,7 +2,6 @@ package sample;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.util.Random;
 
 public class Player extends GameObject{
 
@@ -11,6 +10,7 @@ public class Player extends GameObject{
     }
 
 
+    //You are adding VELOCITY to X and Y. Thats sum up so you will get something like x + x + x + x.
     @Override
     public void tick() {
         x += velX;

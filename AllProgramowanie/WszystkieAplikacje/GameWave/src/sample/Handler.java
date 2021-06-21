@@ -7,6 +7,7 @@ import java.util.LinkedList;
 //It's for fluent refreshing the game images and objects
 public class Handler {
 
+    //We are handling ALL OBJECTS in game. For exmaple in our board.
     LinkedList<GameObject> objects = new LinkedList<>();
 
     public void tick(){
