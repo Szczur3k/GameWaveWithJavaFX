@@ -16,14 +16,15 @@ public class Game extends Canvas implements Runnable {
 
     public Game() {
         new Window(WIDTH, HEIGHT, "Let's Build a Game", this);
+        //Handler is must to initialize beacuse we call it in render() method
         handler = new Handler();
 
-        for (int i = 0; i < 50; i++){
-            handler.addObject(new Player(r.nextInt(WIDTH), r.nextInt(HEIGHT),ID.PLAYER));
-        }
+        //Set object to handler. Player is created and given to the stage
+        handler.addObject(new Player(r.nextInt(WIDTH), r.nextInt(HEIGHT), ID.PLAYER));
 
     }
 
+    //Starting the game with 1 thread. This could be run on multithreading for saving memory
     public synchronized void start() {
         thread = new Thread(this);
         thread.start();
@@ -39,6 +40,7 @@ public class Game extends Canvas implements Runnable {
         }
     }
 
+    //Thats method for calling FPS, times and keep everything fluent
     @Override
     public void run() {
         long lastTime = System.nanoTime();
@@ -72,7 +74,7 @@ public class Game extends Canvas implements Runnable {
 
     private void render() {
         BufferStrategy bs = this.getBufferStrategy();
-        if (bs == null){
+        if (bs == null) {
             this.createBufferStrategy(3);
             return;
         }

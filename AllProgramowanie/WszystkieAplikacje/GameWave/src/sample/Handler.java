@@ -3,6 +3,8 @@ package sample;
 import java.awt.Graphics;
 import java.util.LinkedList;
 
+//Handler is for handling render (for example graphics) and tick (for example moving)
+//It's for fluent refreshing the game images and objects
 public class Handler {
 
     LinkedList<GameObject> objects = new LinkedList<>();

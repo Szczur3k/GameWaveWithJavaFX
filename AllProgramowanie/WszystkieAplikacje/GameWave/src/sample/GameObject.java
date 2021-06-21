@@ -2,6 +2,9 @@ package sample;
 
 import java.awt.Graphics;
 
+// GameObjects that is all things in game. Its abstract because all of the gameObject (for example Player) will have
+// size (x,y) speed (velX, velY) and the ID which is enum.
+// Thats why it must implement tick and render.
 public abstract class GameObject {
 
     protected int x,y;
