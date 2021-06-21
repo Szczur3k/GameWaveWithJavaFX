@@ -24,8 +24,11 @@ public class Game extends Canvas implements Runnable {
         new Window(WIDTH, HEIGHT, "Let's Build a Game", this);
 
         //Set object to handler. Player is created and given to the stage
-        handler.addObject(new Player(WIDTH/2-32, HEIGHT/2-32, ID.PLAYER));
-        handler.addObject(new Player(WIDTH, HEIGHT, ID.ENEMY));
+        handler.addObject(new Player(WIDTH / 2 - 32, HEIGHT / 2 - 32, ID.PLAYER));
+
+        for (int i = 0; i < 6; i++) {
+            handler.addObject(new BasicEnemy(r.nextInt(WIDTH), r.nextInt(HEIGHT), ID.BASIC_ENEMY));
+        }
 
     }
 
@@ -98,6 +101,12 @@ public class Game extends Canvas implements Runnable {
 
     private void tick() {
         handler.tick();
+    }
+
+    public static int clamp(int variable, int min, int max) {
+        if (variable >= max) return variable = max;
+        if (variable <= min) return variable = min;
+        return variable;
     }
 
     public static void main(String[] args) {
