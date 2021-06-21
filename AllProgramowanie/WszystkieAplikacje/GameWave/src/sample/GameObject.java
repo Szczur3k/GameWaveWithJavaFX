@@ -20,7 +20,10 @@ public abstract class GameObject {
 
     public abstract void tick();
     public abstract void render(Graphics g);
-    public abstract Rectangle getBounds();
+
+    public Rectangle getBounds(int x, int y, int width, int height) {
+        return new Rectangle(x, y, width, height);
+    }
 
     public int getX() {
         return x;

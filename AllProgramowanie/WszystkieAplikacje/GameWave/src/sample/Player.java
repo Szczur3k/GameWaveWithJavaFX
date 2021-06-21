@@ -4,7 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
-public class Player extends GameObject {
+public class Player extends GameObject implements Bounds {
 
     private final Handler handler;
 
@@ -31,9 +31,11 @@ public class Player extends GameObject {
         for (int i = 0; i < handler.objects.size(); i++){
 
             GameObject tempObject = handler.objects.get(i);
+            int enemyWidth = 16;
+            int enemyHeight = 16;
 
             if (tempObject.getId() == ID.BASIC_ENEMY){
-                if (getBounds().intersects(tempObject.getBounds())){
+                if (this.getBounds().intersects(tempObject.getBounds(tempObject.x, tempObject.y, enemyWidth, enemyHeight))){
                     HUD.HEALTH -= 5;
                 }
             }
