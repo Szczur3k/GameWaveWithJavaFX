@@ -23,10 +23,10 @@ public class KeyInput extends KeyAdapter {
             if (tempObject.getId() == ID.PLAYER) {
                 //do something
 
-                if (key == KeyEvent.VK_W || key == KeyEvent.VK_UP) tempObject.setVelY(-5);
-                if (key == KeyEvent.VK_S || key == KeyEvent.VK_DOWN) tempObject.setVelY(5);
-                if (key == KeyEvent.VK_A || key == KeyEvent.VK_LEFT) tempObject.setVelX(-5);
-                if (key == KeyEvent.VK_D || key == KeyEvent.VK_RIGHT) tempObject.setVelX(5);
+                if (key == KeyEvent.VK_W || key == KeyEvent.VK_UP) tempObject.setVelY(-8);
+                if (key == KeyEvent.VK_S || key == KeyEvent.VK_DOWN) tempObject.setVelY(8);
+                if (key == KeyEvent.VK_A || key == KeyEvent.VK_LEFT) tempObject.setVelX(-8);
+                if (key == KeyEvent.VK_D || key == KeyEvent.VK_RIGHT) tempObject.setVelX(8);
             }
         }
 

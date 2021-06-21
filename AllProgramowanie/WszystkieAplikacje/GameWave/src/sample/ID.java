@@ -1,6 +1,7 @@
 package sample;
 
 public enum ID {
-    PLAYER(),
-    BASIC_ENEMY()
+    PLAYER,
+    BASIC_ENEMY,
+    TRAIL
 }

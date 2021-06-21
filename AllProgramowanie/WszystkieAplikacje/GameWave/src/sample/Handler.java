@@ -5,6 +5,7 @@ import java.util.LinkedList;
 
 //Handler is for handling render (for example graphics) and tick (for example moving)
 //It's for fluent refreshing the game images and objects
+//And its handling ALL OF THE OBJECTS so you can add objects, delete objects or do something with it
 public class Handler {
 
     //We are handling ALL OBJECTS in game. For exmaple in our board.

@@ -27,10 +27,11 @@ public class Game extends Canvas implements Runnable {
         hud = new HUD();
 
         //Set object to handler. Player is created and given to the stage
-        handler.addObject(new Player(WIDTH / 2 - 32, HEIGHT / 2 - 32, ID.PLAYER));
 
-        for (int i = 0; i < 6; i++) {
-            handler.addObject(new BasicEnemy(r.nextInt(WIDTH), r.nextInt(HEIGHT), ID.BASIC_ENEMY));
+        handler.addObject(new Player(WIDTH / 2 - 32, HEIGHT / 2 - 32, ID.PLAYER, handler));
+
+        for (int i = 0; i < 10; i++) {
+            handler.addObject(new BasicEnemy(r.nextInt(WIDTH), r.nextInt(HEIGHT), ID.BASIC_ENEMY, handler));
         }
 
     }
@@ -83,6 +84,8 @@ public class Game extends Canvas implements Runnable {
                 System.out.println("FPS: " + frames);
                 frames = 0;
             }
+
+            if (HUD.HEALTH == 0) running = false;
         }
     }
 
@@ -114,6 +117,10 @@ public class Game extends Canvas implements Runnable {
         if (variable >= max) return variable = max;
         if (variable <= min) return variable = min;
         return variable;
+    }
+
+    private void collision(){
+
     }
 
     public static void main(String[] args) {

@@ -1,6 +1,7 @@
 package sample;
 
 import java.awt.Graphics;
+import java.awt.Rectangle;
 
 // GameObjects that is all things in game. Its abstract because all of the gameObject (for example Player) will have
 // size (x,y) speed (velX, velY) and the ID which is enum.
@@ -19,6 +20,10 @@ public abstract class GameObject {
 
     public abstract void tick();
     public abstract void render(Graphics g);
+
+    public Rectangle getBounds(int x, int y, int width, int height) {
+        return new Rectangle(x, y, width, height);
+    }
 
     public int getX() {
         return x;
