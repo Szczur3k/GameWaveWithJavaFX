@@ -89,7 +89,7 @@ public class Game extends Canvas implements Runnable {
     }
 
     private void tick() {
-        handler.tick(); 
+        handler.tick();
     }
 
     public static void main(String[] args) {
