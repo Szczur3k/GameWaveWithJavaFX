@@ -1,5 +1,7 @@
 package sample;
 
+import sample.Enemies.BasicEnemy;
+
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Graphics;
@@ -8,12 +10,13 @@ import java.util.Random;
 
 public class Game extends Canvas implements Runnable {
 
-    public static final int WIDTH = 640, HEIGHT = WIDTH / 12 * 9;
+    public static final int WIDTH = 880, HEIGHT = WIDTH / 14 * 9;
     private Thread thread;
     private boolean running = false;
     private final Handler handler;
     private final Random r = new Random();
     private final HUD hud;
+    private Spawn spawner;
 
     public Game() {
         //Handler is must to initialize beacuse we call it in render() method
@@ -25,14 +28,13 @@ public class Game extends Canvas implements Runnable {
         new Window(WIDTH, HEIGHT, "Let's Build a Game", this);
 
         hud = new HUD();
+        spawner = new Spawn(handler, hud);
 
         //Set object to handler. Player is created and given to the stage
 
         handler.addObject(new Player(WIDTH / 2 - 32, HEIGHT / 2 - 32, ID.PLAYER, handler));
+        handler.addObject(new BasicEnemy(r.nextInt(WIDTH - 35), r.nextInt(HEIGHT - 35), ID.BASIC_ENEMY, handler));
 
-        for (int i = 0; i < 10; i++) {
-            handler.addObject(new BasicEnemy(r.nextInt(WIDTH), r.nextInt(HEIGHT), ID.BASIC_ENEMY, handler));
-        }
 
     }
 
@@ -75,7 +77,7 @@ public class Game extends Canvas implements Runnable {
             }
 
             if (running) {
-                render();
+                renderGraphics();
                 frames++;
             }
 
@@ -85,11 +87,16 @@ public class Game extends Canvas implements Runnable {
                 frames = 0;
             }
 
-            if (HUD.HEALTH == 0) running = false;
+            if (HUD.HEALTH == 0) {
+                running = false;
+                Graphics g = getGraphics();
+                g.setColor(Color.WHITE);
+                g.drawString("GAME OVER", 430, 220);
+            }
         }
     }
 
-    private void render() {
+    private void renderGraphics() {
         BufferStrategy bs = this.getBufferStrategy();
         if (bs == null) {
             this.createBufferStrategy(3);
@@ -111,16 +118,13 @@ public class Game extends Canvas implements Runnable {
     private void tick() {
         handler.tick();
         hud.tick();
+        spawner.tick();
     }
 
     public static int clamp(int variable, int min, int max) {
         if (variable >= max) return variable = max;
         if (variable <= min) return variable = min;
         return variable;
-    }
-
-    private void collision(){
-
     }
 
     public static void main(String[] args) {

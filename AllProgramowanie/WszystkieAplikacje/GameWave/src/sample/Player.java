@@ -51,13 +51,26 @@ public class Player extends GameObject implements Bounds {
                     HUD.HEALTH -= 5;
                 }
             }
+
+            if (tempObject.getId() == ID.FAST_ENEMY) {
+                if (this.getBounds().intersects(tempObject.getBounds(tempObject.x, tempObject.y, enemyWidth, enemyHeight))) {
+                    HUD.HEALTH -= 1;
+                }
+            }
+
+            if (tempObject.getId() == ID.BIG_ENEMY) {
+                if (this.getBounds().intersects(tempObject.getBounds(tempObject.x, tempObject.y, enemyWidth, enemyHeight))) {
+                    HUD.HEALTH -= 25;
+                }
+            }
+
         }
     }
 
     private void doTrail(){
         int widthOfTrail = 32;
         int heightOfTrail = 32;
-        handler.addObject(new Trail(x, y, ID.TRAIL, handler, Color.BLUE, heightOfTrail, widthOfTrail, 0.08f));
+        handler.addObject(new Trail(x, y, ID.TRAIL, handler, Color.WHITE, heightOfTrail, widthOfTrail, 0.08f));
     }
 
 }
